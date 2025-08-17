@@ -39,3 +39,32 @@ public class LeituraDouble {
 }
 ```
 
+## Exemplo Completo
+```bash
+public class FormatDemo {
+    public static void main(String[] args) {
+        int n = 255;
+        double pi = 3.14159;
+        String nome = "Leonam";
+        boolean ativo = true;
+
+        System.out.printf("Decimal: %d%n", n);
+        System.out.printf("Octal: %o%n", n);
+        System.out.printf("Hex: %x%n", n);
+        System.out.printf("Hex (maiúsculo): %X%n", n);
+
+        System.out.printf("PI normal: %f%n", pi);
+        System.out.printf("PI com 2 casas: %.2f%n", pi);
+        System.out.printf("PI científica: %e%n", pi);
+
+        System.out.printf("Nome: %s%n", nome);
+        System.out.printf("Ativo: %b%n", ativo);
+
+        System.out.printf("Com largura 5: %5d%n", 42);
+        System.out.printf("Zeros à esquerda: %05d%n", 42);
+        System.out.printf("Alinhado à esquerda: %-5dFIM%n", 42);
+    }
+}
+
+
+```
