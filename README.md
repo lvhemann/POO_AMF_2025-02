@@ -1,70 +1,107 @@
-# POO_AMF_2025-02
+<img width="961" height="193" alt="image" src="https://github.com/user-attachments/assets/0b04480d-3dbc-4785-9735-e2c9c999d31f" /># POO_AMF_2025-02
 
-## Conversão de um String para Inteiro
-
+## Exemplo do carro
 ```bash
-import java.util.Scanner;
+// Definição da classe Carro (o molde ou receita)
+static class Carro {
+    
+    // === ATRIBUTOS (características de cada carro) ===
+    String marca;   // Marca do carro (ex.: Volkswagen, Honda, Ferrari)
+    String modelo;  // Modelo do carro (ex.: Fusca, Civic, F8)
+    int ano;        // Ano de fabricação do carro
 
-public class LeituraInteiro {  // CUIDADO COM O NOME DO SEU PROJETO 
-    public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+    // === MÉTODOS (ações que o carro pode realizar) ===
 
-        System.out.print("Digite um número inteiro: ");
-        String texto = entrada.nextLine(); // lê como String
-        int x = Integer.parseInt(texto);   // converte para int
+    // Método para ligar o carro
+    void ligar() {
+        System.out.println(marca + " " + modelo + " está ligado!");
+    }
 
-        System.out.println("Você digitou o número: " + x);
-        entrada.close();
+    // Método para acelerar o carro
+    void acelerar() {
+        System.out.println(marca + " " + modelo + " está acelerando!");
     }
 }
 
 ```
 
-## Conversão de String para número real (double)
+## Como usar no código
 ```bash
-import java.util.Scanner;
-
-public class LeituraDouble {
+// Classe principal (onde o programa começa)
+public class Main {
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+        // Criando o primeiro objeto (carro1)
+        Carro carro1 = new Carro();  // "new Carro()" cria um novo objeto da classe Carro
+        carro1.marca = "Volkswagen";
+        carro1.modelo = "Fusca";
+        carro1.ano = 1980;
 
-        System.out.print("Digite um número real: ");
-        String texto = entrada.nextLine();     // lê como String
-        double x = Double.parseDouble(texto);  // converte para double
+        // Criando o segundo objeto (carro2)
+        Carro carro2 = new Carro();
+        carro2.marca = "Honda";
+        carro2.modelo = "Civic";
+        carro2.ano = 2020;
 
-        System.out.printf("Você digitou: %.2f%n", x);
+        // Criando o terceiro objeto (carro3)
+        Carro carro3 = new Carro();
+        carro3.marca = "Ferrari";
+        carro3.modelo = "F8";
+        carro3.ano = 2022;
 
-        entrada.close();
+        // Chamando métodos nos objetos
+        carro1.ligar();
+        carro2.acelerar();
+        carro3.ligar();
+        carro3.acelerar();
     }
 }
 ```
+# Exemplo
 
-## Exemplo Completo
+## Estacionamento (Classe e dois método)
 ```bash
-public class FormatDemo {
-    public static void main(String[] args) {
-        int n = 255;
-        double pi = 3.14159;
-        String nome = "Leonam";
-        boolean ativo = true;
+static class Carro {
+    String placa;
+    String modelo;
+    String cor;
+    boolean estacionado; // controla se o carro está ou não estacionado
 
-        System.out.printf("Decimal: %d%n", n);
-        System.out.printf("Octal: %o%n", n);
-        System.out.printf("Hex: %x%n", n);
-        System.out.printf("Hex (maiúsculo): %X%n", n);
+    void estacionar() {
+        if (!estacionado) {
+            estacionado = true;
+            System.out.println("Carro " + placa + " estacionou.");
+        } else {
+            System.out.println("Carro " + placa + " já estava estacionado.");
+        }
+    }
 
-        System.out.printf("PI normal: %f%n", pi);
-        System.out.printf("PI com 2 casas: %.2f%n", pi);
-        System.out.printf("PI científica: %e%n", pi);
-
-        System.out.printf("Nome: %s%n", nome);
-        System.out.printf("Ativo: %b%n", ativo);
-
-        System.out.printf("Com largura 5: %5d%n", 42);
-        System.out.printf("Zeros à esquerda: %05d%n", 42);
-        System.out.printf("Alinhado à esquerda: %-5dFIM%n", 42);
+    void sair() {
+        if (estacionado) {
+            estacionado = false;
+            System.out.println("Carro " + placa + " saiu.");
+        } else {
+            System.out.println("Carro " + placa + " já estava fora.");
+        }
     }
 }
 
+```
+
+## Objeto 
+```bash
+public class Main {
+    public static void main(String[] args) {
+        // Criando o objeto
+        Carro c1 = new Carro();
+        c1.placa = "XYZ-9876";
+        c1.modelo = "Onix";
+        c1.cor = "Branco";
+        c1.estacionado = false; // começa fora
+
+        c1.estacionar();
+        c1.sair();
+        c1.sair(); // tentativa de sair novamente
+    }
+}
 
 ```
