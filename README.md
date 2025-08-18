@@ -1,70 +1,23 @@
 # POO_AMF_2025-02
 
-## Conversão de um String para Inteiro
+## Exec. 1 
+Pensem em um carro. Se a gente quisesse criar um carro dentro do computador, o que ele teria e o que ele faria?
+1) Quais características todo carro tem?
+2) O que um carro pode fazer?
+3) Agora: se eu quisesse representar um carro específico, qual seria?
 
-```bash
-import java.util.Scanner;
+## Exerc. 2
 
-public class LeituraInteiro {  // CUIDADO COM O NOME DO SEU PROJETO 
-    public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+Se fôssemos criar uma pessoa no computador, o que toda pessoa teria e o que poderia fazer?
+1) Que informações uma pessoa sempre tem?
+2) O que uma pessoa pode fazer?
+3) Se fosse uma pessoa específica, quem seria?
 
-        System.out.print("Digite um número inteiro: ");
-        String texto = entrada.nextLine(); // lê como String
-        int x = Integer.parseInt(texto);   // converte para int
+## Exerc. 3
 
-        System.out.println("Você digitou o número: " + x);
-        entrada.close();
-    }
-}
-
-```
-
-## Conversão de String para número real (double)
-```bash
-import java.util.Scanner;
-
-public class LeituraDouble {
-    public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
-
-        System.out.print("Digite um número real: ");
-        String texto = entrada.nextLine();     // lê como String
-        double x = Double.parseDouble(texto);  // converte para double
-
-        System.out.printf("Você digitou: %.2f%n", x);
-
-        entrada.close();
-    }
-}
-```
-
-## Exemplo Completo
-```bash
-public class FormatDemo {
-    public static void main(String[] args) {
-        int n = 255;
-        double pi = 3.14159;
-        String nome = "Leonam";
-        boolean ativo = true;
-
-        System.out.printf("Decimal: %d%n", n);
-        System.out.printf("Octal: %o%n", n);
-        System.out.printf("Hex: %x%n", n);
-        System.out.printf("Hex (maiúsculo): %X%n", n);
-
-        System.out.printf("PI normal: %f%n", pi);
-        System.out.printf("PI com 2 casas: %.2f%n", pi);
-        System.out.printf("PI científica: %e%n", pi);
-
-        System.out.printf("Nome: %s%n", nome);
-        System.out.printf("Ativo: %b%n", ativo);
-
-        System.out.printf("Com largura 5: %5d%n", 42);
-        System.out.printf("Zeros à esquerda: %05d%n", 42);
-        System.out.printf("Alinhado à esquerda: %-5dFIM%n", 42);
-    }
-}
+Se quiséssemos criar um cachorro no computador, o que ele teria e o que poderia fazer?
+1) Quais características todo cachorro tem?
+2) O que os cachorros podem fazer?
+3) Se fosse um cachorro de verdade, qual seria?
 
 
-```
