@@ -1,70 +1,119 @@
 # POO_AMF_2025-02
+## Lista de exercício
 
-## Conversão de um String para Inteiro
+Enredo:
+Um mercado deseja registrar produtos para calcular o valor total da compra.
+Cada produto possui um nome, um preço unitário e uma quantidade comprada.
+O sistema deve mostrar o valor total gasto com esse produto.
+
+1) Passo
+
+Resuma o que o programa precisa fazer, com suas palavras:
+* Exemplo de resposta esperada:
+“O sistema deve armazenar os dados de um produto (nome, preço e quantidade) e calcular o valor total (preço × quantidade).”
+
+2) Planejar a classe
+
+Escreva:
+Nome da classe: __________
+Atributos: __________
+Métodos: __________
+
+Exemplo de resposta esperada:
+Classe: Produto
+Atributos: nome, preco, quantidade
+Métodos: calcularTotal(), exibirInfo()
+
+# Estrutura do Código
 
 ```bash
-import java.util.Scanner;
+class Produto {
+    String nome;
+    double preco;
+    int quantidade;
 
-public class LeituraInteiro {  // CUIDADO COM O NOME DO SEU PROJETO 
-    public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+    void calcularTotal() {
+        // implementar
+    }
 
-        System.out.print("Digite um número inteiro: ");
-        String texto = entrada.nextLine(); // lê como String
-        int x = Integer.parseInt(texto);   // converte para int
-
-        System.out.println("Você digitou o número: " + x);
-        entrada.close();
+    void exibirInfo() {
+        // implementar
     }
 }
 
 ```
 
-## Conversão de String para número real (double)
 ```bash
-import java.util.Scanner;
+class Produto {
+    String nome;
+    double preco;
+    int quantidade;
 
-public class LeituraDouble {
+    void calcularTotal() {
+        double total = preco * quantidade;
+        System.out.println("Total gasto: R$" + total);
+    }
+
+    void exibirInfo() {
+        System.out.println("Produto: " + nome + " | Preço: R$" + preco + " | Quantidade: " + quantidade);
+    }
+}
+
+```
+```bash
+public class Mercado {
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+        Produto p1 = new Produto();
+        p1.nome = "Arroz";
+        p1.preco = 5.50;
+        p1.quantidade = 3;
 
-        System.out.print("Digite um número real: ");
-        String texto = entrada.nextLine();     // lê como String
-        double x = Double.parseDouble(texto);  // converte para double
+        p1.exibirInfo();
+        p1.calcularTotal();
 
-        System.out.printf("Você digitou: %.2f%n", x);
+        System.out.println();
 
-        entrada.close();
+        Produto p2 = new Produto();
+        p2.nome = "Leite";
+        p2.preco = 4.00;
+        p2.quantidade = 2;
+
+        p2.exibirInfo();
+        p2.calcularTotal();
     }
 }
 ```
 
-## Exemplo Completo
-```bash
-public class FormatDemo {
-    public static void main(String[] args) {
-        int n = 255;
-        double pi = 3.14159;
-        String nome = "Leonam";
-        boolean ativo = true;
+## Exercícios para serem entregues
 
-        System.out.printf("Decimal: %d%n", n);
-        System.out.printf("Octal: %o%n", n);
-        System.out.printf("Hex: %x%n", n);
-        System.out.printf("Hex (maiúsculo): %X%n", n);
-
-        System.out.printf("PI normal: %f%n", pi);
-        System.out.printf("PI com 2 casas: %.2f%n", pi);
-        System.out.printf("PI científica: %e%n", pi);
-
-        System.out.printf("Nome: %s%n", nome);
-        System.out.printf("Ativo: %b%n", ativo);
-
-        System.out.printf("Com largura 5: %5d%n", 42);
-        System.out.printf("Zeros à esquerda: %05d%n", 42);
-        System.out.printf("Alinhado à esquerda: %-5dFIM%n", 42);
-    }
-}
+O que deve ser entregue
+Resumo do problema (explicação com suas palavras).
+Planejamento da classe (nome, atributos, métodos).
+Código da classe (com métodos implementados).
+Programa principal testando pelo menos 2 objetos diferentes.
 
 
-```
+1) Um pet shop deseja cadastrar cães para banho e tosa.
+Cada cachorro tem um nome, uma raça e uma idade.
+O sistema deve permitir cadastrar o cachorro e depois mostrar suas informações.
+
+
+2) Uma garagem precisa registrar os carros que chegam.
+Cada carro tem uma marca, um modelo e um ano.
+O sistema deve mostrar as informações do carro registrado.
+
+3) Um mercado deseja calcular o valor total de um produto comprado em certa quantidade.
+Cada produto possui um nome, um preço unitário e uma quantidade.
+O sistema deve calcular e exibir o valor total da compra.
+
+4) Uma escola deseja registrar os alunos e calcular suas médias.
+Cada aluno tem um nome e duas notas.
+O sistema deve calcular a média e informar se o aluno está aprovado (média ≥ 7) ou reprovado.
+
+5) Um banco precisa controlar contas.
+Cada conta tem um número e um saldo.
+O sistema deve permitir depositar e sacar valores, mostrando o saldo atualizado após cada operação.
+
+6) Um jogo precisa criar personagens que têm nome e pontos de vida (começam em 100).
+O personagem pode sofrer dano, perdendo vida, ou se curar, recuperando pontos de vida.
+O sistema deve mostrar o status do personagem após cada ação.
