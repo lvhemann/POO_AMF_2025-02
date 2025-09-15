@@ -117,3 +117,17 @@ O sistema deve permitir depositar e sacar valores, mostrando o saldo atualizado 
 6) Um jogo precisa criar personagens que têm nome e pontos de vida (começam em 100).
 O personagem pode sofrer dano, perdendo vida, ou se curar, recuperando pontos de vida.
 O sistema deve mostrar o status do personagem após cada ação.
+
+7) Um banco deseja controlar suas contas.
+Toda conta tem um número e um saldo.
+Existem dois tipos de conta:
+Conta Corrente, que tem também uma taxa de saque.
+Conta Poupança, que pode render juros.
+O sistema deve permitir criar contas, realizar depósitos, saques e rendimentos.
+
+8) Uma empresa deseja registrar seus funcionários.
+Todo funcionário possui um nome e um salário base.
+Existem dois tipos de funcionários:
+O Gerente, que tem também um setor.
+O Vendedor, que tem também um valor de comissão.
+O sistema deve permitir cadastrar gerentes e vendedores e exibir suas informações.
