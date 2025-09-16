@@ -1,70 +1,167 @@
-# POO_AMF_2025-02
+# Feira Tecnológica de Inovação
 
-## Conversão de um String para Inteiro
+## Enredo
+A escola está organizando uma **Feira Tecnológica de Inovação**, onde diversos projetos de diferentes áreas serão apresentados.  
+O sistema que deve ser desenvolvido em **Java** tem como objetivo **gerenciar os projetos expostos** e também registrar as **avaliações feitas pelos avaliadores convidados**.
 
-```bash
-import java.util.Scanner;
+## Regras gerais
+### Todo Projeto tem:
+- Nome do projeto
+- Nome do responsável
+- Instituição de origem
+- Espaço reservado na feira
 
-public class LeituraInteiro {  // CUIDADO COM O NOME DO SEU PROJETO 
-    public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+### Tipos de Projeto
+**Projeto de Robótica**  
+- quantidade de sensores utilizados  
+- hardware utilizado (Arduino, ESP32, Raspberry Pi etc.)  
+- software utilizado (IDE Arduino, ROS etc.)  
+- linguagem de programação utilizada  
 
-        System.out.print("Digite um número inteiro: ");
-        String texto = entrada.nextLine(); // lê como String
-        int x = Integer.parseInt(texto);   // converte para int
+**Projeto de Software**  
+- linguagem de programação principal  
+- plataforma de desenvolvimento (Web, Mobile, Desktop)  
+- framework ou biblioteca usada  
 
-        System.out.println("Você digitou o número: " + x);
-        entrada.close();
-    }
-}
+**Projeto de Ciências**  
+- tema da pesquisa  
+- origem da pesquisa (laboratório da escola, universidade parceira etc.)  
+- área científica (Biologia, Física, Química etc.)  
 
-```
-
-## Conversão de String para número real (double)
-```bash
-import java.util.Scanner;
-
-public class LeituraDouble {
-    public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
-
-        System.out.print("Digite um número real: ");
-        String texto = entrada.nextLine();     // lê como String
-        double x = Double.parseDouble(texto);  // converte para double
-
-        System.out.printf("Você digitou: %.2f%n", x);
-
-        entrada.close();
-    }
-}
-```
-
-## Exemplo Completo
-```bash
-public class FormatDemo {
-    public static void main(String[] args) {
-        int n = 255;
-        double pi = 3.14159;
-        String nome = "Leonam";
-        boolean ativo = true;
-
-        System.out.printf("Decimal: %d%n", n);
-        System.out.printf("Octal: %o%n", n);
-        System.out.printf("Hex: %x%n", n);
-        System.out.printf("Hex (maiúsculo): %X%n", n);
-
-        System.out.printf("PI normal: %f%n", pi);
-        System.out.printf("PI com 2 casas: %.2f%n", pi);
-        System.out.printf("PI científica: %e%n", pi);
-
-        System.out.printf("Nome: %s%n", nome);
-        System.out.printf("Ativo: %b%n", ativo);
-
-        System.out.printf("Com largura 5: %5d%n", 42);
-        System.out.printf("Zeros à esquerda: %05d%n", 42);
-        System.out.printf("Alinhado à esquerda: %-5dFIM%n", 42);
-    }
-}
+### Avaliação
+- Cada **Avaliador** tem:
+  - nome  
+  - especialidade (Robótica, Software, Ciências etc.)
+ 
 
 
-```
+
+
+# Campeonato Esportivo
+
+## Enredo
+Uma universidade está organizando um campeonato esportivo entre diferentes modalidades.  
+O sistema deve ser desenvolvido em Java para gerenciar os times participantes, os árbitros responsáveis e as partidas realizadas.
+
+## Estrutura do Sistema
+- **Time (classe base):**
+  - nome
+  - instituição de origem
+  - número de jogadores
+
+- **Time de Futebol (subclasse):**
+  - técnico responsável
+  - número de reservas
+
+- **Time de Vôlei (subclasse):**
+  - altura média dos jogadores
+  - quantidade de sets jogados
+
+- **Time de Basquete (subclasse):**
+  - altura média dos jogadores
+  - capitão do time
+
+- **Árbitro:**
+  - nome
+  - modalidade em que atua
+  - anos de experiência
+
+- **Partida:**
+  - time1
+  - time2
+  - árbitro responsável
+  - resultado final
+
+## O que deve ser entregue
+- Criar pelo menos um time de cada modalidade.  
+- Criar árbitros.  
+- Simular pelo menos duas partidas, mostrando:
+  - informações dos times,
+  - árbitro responsável,
+  - resultado final.
+
+
+- Cada avaliador pode atribuir **uma nota** a um projeto.  
+- O Projeto deve registrar **o nome do avaliador e a nota atribuída**.
+
+
+# Agência de Viagens
+
+## Enredo
+Uma agência de viagens deseja informatizar o cadastro de pacotes turísticos e os guias responsáveis por cada viagem.  
+O sistema deve ser desenvolvido em Java para registrar os pacotes disponíveis e exibir suas informações.
+
+## Estrutura do Sistema
+- **Pacote (classe base):**
+  - destino
+  - duração em dias
+  - preço
+
+- **Pacote Nacional (subclasse):**
+  - estado de destino
+  - transporte utilizado
+
+- **Pacote Internacional (subclasse):**
+  - país de destino
+  - necessidade de visto (sim/não)
+
+- **Pacote de Aventura (subclasse):**
+  - nível de dificuldade
+  - equipamento incluso (sim/não)
+
+- **Guia:**
+  - nome
+  - idioma que fala
+  - anos de experiência
+
+## O que deve ser entregue
+- Criar pelo menos um pacote de cada tipo.  
+- Associar cada pacote a um guia de turismo.  
+- Mostrar no console:
+  - informações do pacote,
+  - dados do guia responsável.
+
+
+# Biblioteca Digital
+
+## Enredo
+Uma universidade deseja informatizar sua biblioteca digital.  
+O sistema deve ser desenvolvido em Java para cadastrar obras e organizar os empréstimos feitos pelos usuários.
+
+## Estrutura do Sistema
+- **Obra (classe base):**
+  - título
+  - autor
+  - ano de publicação
+
+- **Livro (subclasse):**
+  - número de páginas
+  - gênero literário
+
+- **Revista (subclasse):**
+  - edição
+  - área (ciências, tecnologia, cultura etc.)
+
+- **Artigo Científico (subclasse):**
+  - conferência/jornal publicado
+  - DOI
+
+- **Usuário:**
+  - nome
+  - matrícula
+  - curso
+
+- **Empréstimo:**
+  - obra emprestada
+  - usuário responsável
+  - data do empréstimo
+  - data de devolução
+
+## O que deve ser entregue
+- Criar pelo menos um objeto de cada tipo de obra.  
+- Criar usuários.  
+- Realizar empréstimos e exibir no console:
+  - dados da obra,
+  - informações do usuário,
+  - datas de empréstimo e devolução.
+
