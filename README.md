@@ -1,70 +1,194 @@
 # POO_AMF_2025-02
 
-## Conversão de um String para Inteiro
+## Getters e Setters
 
 ```bash
-import java.util.Scanner;
+public class Pessoa {
+private String nome; // detalhe interno
+private int idade; // detalhe interno
+private boolean ativo = true;
 
-public class LeituraInteiro {  // CUIDADO COM O NOME DO SEU PROJETO 
-    public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
 
-        System.out.print("Digite um número inteiro: ");
-        String texto = entrada.nextLine(); // lê como String
-        int x = Integer.parseInt(texto);   // converte para int
+public Pessoa(String nome, int idade) { // construtor
+setNome(nome); // reutiliza validação do setter
+setIdade(idade);
+}
 
-        System.out.println("Você digitou o número: " + x);
-        entrada.close();
+
+public String getNome() { return nome; }
+public void setNome(String nome) {
+if (nome == null || nome.isBlank()) throw new IllegalArgumentException("nome vazio");
+this.nome = nome.trim();
+}
+
+
+public int getIdade() { return idade; }
+public void setIdade(int idade) {
+if (idade < 0 || idade > 130) throw new IllegalArgumentException("idade inválida");
+this.idade = idade;
+}
+
+
+public boolean isAtivo() { return ativo; }
+public void setAtivo(boolean ativo) { this.ativo = ativo; }
+}
+```
+## Getter e Setter
+
+```bash
+public class Pessoa {
+    // ===== Atributos privados =====
+    private String nome;
+    private int idade;
+    private boolean ativo;
+
+    // ===== Construtor =====
+    public Pessoa(String nome, int idade, boolean ativo) {
+        this.nome = nome;
+        this.idade = idade;
+        this.ativo = ativo;
+    }
+
+    // ===== Getters e Setters =====
+    
+    // String → getNome / setNome
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    // int → getIdade / setIdade
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        if (idade < 0) {
+            throw new IllegalArgumentException("Idade não pode ser negativa");
+        }
+        this.idade = idade;
+    }
+
+    // boolean → isAtivo / setAtivo
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 }
+
 
 ```
 
-## Conversão de String para número real (double)
 ```bash
-import java.util.Scanner;
-
-public class LeituraDouble {
+public class Main {
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+        Pessoa p = new Pessoa("Maria", 20, true);
 
-        System.out.print("Digite um número real: ");
-        String texto = entrada.nextLine();     // lê como String
-        double x = Double.parseDouble(texto);  // converte para double
+        // Usando getters
+        System.out.println("Nome: " + p.getNome());
+        System.out.println("Idade: " + p.getIdade());
+        System.out.println("Ativo: " + p.isAtivo());
 
-        System.out.printf("Você digitou: %.2f%n", x);
+        // Usando setters
+        p.setNome("João");
+        p.setIdade(25);
+        p.setAtivo(false);
 
-        entrada.close();
+        System.out.println("Novo nome: " + p.getNome());
+        System.out.println("Nova idade: " + p.getIdade());
+        System.out.println("Ativo? " + p.isAtivo());
     }
 }
+
+
 ```
 
-## Exemplo Completo
+
+## Exemplo de Public, private e protected
 ```bash
-public class FormatDemo {
-    public static void main(String[] args) {
-        int n = 255;
-        double pi = 3.14159;
-        String nome = "Leonam";
-        boolean ativo = true;
+// Classe base
+public class Pessoa {
+    // Atributo privado: só pode ser acessado dentro da própria classe
+    private String cpf;
 
-        System.out.printf("Decimal: %d%n", n);
-        System.out.printf("Octal: %o%n", n);
-        System.out.printf("Hex: %x%n", n);
-        System.out.printf("Hex (maiúsculo): %X%n", n);
+    // Atributo protegido: pode ser acessado por subclasses ou no mesmo pacote
+    protected String nome;
 
-        System.out.printf("PI normal: %f%n", pi);
-        System.out.printf("PI com 2 casas: %.2f%n", pi);
-        System.out.printf("PI científica: %e%n", pi);
+    // Atributo público: acessível de qualquer lugar
+    public int idade;
 
-        System.out.printf("Nome: %s%n", nome);
-        System.out.printf("Ativo: %b%n", ativo);
+    // Construtor
+    public Pessoa(String cpf, String nome, int idade) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.idade = idade;
+    }
 
-        System.out.printf("Com largura 5: %5d%n", 42);
-        System.out.printf("Zeros à esquerda: %05d%n", 42);
-        System.out.printf("Alinhado à esquerda: %-5dFIM%n", 42);
+    // Getter público para acessar o cpf (já que é private)
+    public String getCpf() {
+        return cpf;
+    }
+
+    // Método público
+    public void apresentar() {
+        System.out.println("Nome: " + nome + ", Idade: " + idade);
     }
 }
+
+// Classe filha (subclasse)
+class Aluno extends Pessoa {
+    private String matricula;
+
+    public Aluno(String cpf, String nome, int idade, String matricula) {
+        super(cpf, nome, idade);
+        this.matricula = matricula;
+    }
+
+    public void mostrarDadosAluno() {
+        // cpf é PRIVATE → não pode acessar diretamente
+        // System.out.println(cpf); // ERRO
+
+        // nome é PROTECTED → pode acessar aqui
+        System.out.println("Nome do aluno: " + nome);
+
+        // idade é PUBLIC → pode acessar de qualquer lugar
+        System.out.println("Idade do aluno: " + idade);
+
+        // Para cpf, usa o getter público
+        System.out.println("CPF do aluno: " + getCpf());
+
+        System.out.println("Matrícula: " + matricula);
+    }
+}
+
+// Classe principal
+public class Main {
+    public static void main(String[] args) {
+        Aluno a = new Aluno("123.456.789-00", "Maria", 20, "2025A01");
+
+        // Acessando métodos públicos
+        a.apresentar();
+        a.mostrarDadosAluno();
+
+        // Atributo público → acessível diretamente
+        a.idade = 21;
+
+        // Atributo protegido → não acessível aqui (fora da subclasse/pacote)
+        // a.nome = "João"; // ERRO se estiver em outro pacote
+
+        // Atributo privado → nunca acessível diretamente
+        // a.cpf = "000.000.000-00"; // ERRO
+
+        System.out.println("CPF (via getter): " + a.getCpf());
+    }
+}
+
 
 
 ```
