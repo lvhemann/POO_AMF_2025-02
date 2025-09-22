@@ -1,5 +1,39 @@
 # POO_AMF_2025-02
 
+## Lista de Getters e Setters
+
+1) ContaBancaria
+Crie uma classe ContaBancaria com os atributos:
+titular (String)
+saldo (double)
+Implemente os métodos:
+getTitular() e setTitular(String titular)
+getSaldo() e setSaldo(double saldo)
+
+2) Crie uma classe Funcionario com os atributos:
+nome (String)
+Salario (double)
+ativo (boolean)
+Implemente:
+getNome() e setNome()
+getSalario() e setSalario()
+isAtivo() e setAtivo()
+
+3) Crie uma classe Veiculo com:
+modelo (String)
+ano (int)
+Implemente os métodos getModelo(), setModelo(), getAno() e setAno().
+
+4) Crie uma classe Pessoa com:
+nome (String)
+idade (int)
+estudante (boolean)
+Implemente:
+getNome() / setNome()
+getIdade() / setIdade()
+isEstudante() / setEstudante()
+
+
 ## Getters e Setters
 
 ```bash
