@@ -223,6 +223,96 @@ public class Main {
     }
 }
 
+```
+
+
+## Uso de Super
+```bash
+class Animal {
+    String nome;
+
+    Animal(String nome) {
+        this.nome = nome;
+    }
+}
+
+class Cachorro extends Animal {
+    String raca;
+
+    Cachorro(String nome, String raca) {
+        super(nome); // chama o construtor da classe mãe
+        this.raca = raca;
+    }
+}
+
+```
+
+## Uso de Super em Herança
+
+```bash
+// Classe Pai (Superclasse)
+class Animal {
+    protected String nome;
+
+    // Construtor da classe Animal
+    public Animal(String nome) {
+        this.nome = nome;
+    }
+
+    // Método que será sobrescrito nas subclasses
+    public void falar() {
+        System.out.println(nome + " está emitindo um som genérico.");
+    }
+}
+
+// Subclasse Cachorro
+class Cachorro extends Animal {
+    public Cachorro(String nome) {
+        super(nome); // chama o construtor da superclasse
+    }
+
+    @Override
+    public void falar() {
+        System.out.println(nome + " está latindo: Au Au!");
+    }
+}
+
+// Subclasse Gato
+class Gato extends Animal {
+    public Gato(String nome) {
+        super(nome);
+    }
+
+    @Override
+    public void falar() {
+        System.out.println(nome + " está miando: Miau!");
+    }
+}
+
+// Subclasse Cavalo
+class Cavalo extends Animal {
+    public Cavalo(String nome) {
+        super(nome);
+    }
+
+    @Override
+    public void falar() {
+        System.out.println(nome + " está relinchando: Ihhhiii!");
+    }
+}
+
+// Classe principal para teste
+public class Main {
+    public static void main(String[] args) {
+        Animal cachorro = new Cachorro("Rex");
+        Animal gato = new Gato("Mimi");
+        Animal cavalo = new Cavalo("Pé de Pano");
+
+        cachorro.falar();
+        gato.falar();
+        cavalo.falar();
+    }
+}
 
 
 ```
