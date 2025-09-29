@@ -1,70 +1,263 @@
 # POO_AMF_2025-02
 
-## Conversão de um String para Inteiro
-
+## Exemplo Carro e Motor
 ```bash
-import java.util.Scanner;
+// Classe Motor
+class Motor {
+    private int id;
+    private String modelo;
 
-public class LeituraInteiro {  // CUIDADO COM O NOME DO SEU PROJETO 
-    public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+    // Construtor
+    public Motor(int id, String modelo) {
+        this.id = id;
+        this.modelo = modelo;
+    }
 
-        System.out.print("Digite um número inteiro: ");
-        String texto = entrada.nextLine(); // lê como String
-        int x = Integer.parseInt(texto);   // converte para int
+    // Getters
+    public int getId() {
+        return this.id;
+    }
 
-        System.out.println("Você digitou o número: " + x);
-        entrada.close();
+    public String getModelo() {
+        return this.modelo;
     }
 }
 
-```
+// Classe Carro (tem um Motor → composição)
+class Carro {
+    private int id;
+    private String modelo;
+    private Motor motor; // composição
 
-## Conversão de String para número real (double)
-```bash
-import java.util.Scanner;
+    // Construtor
+    public Carro(int id, String modelo, Motor motor) {
+        this.id = id;
+        this.modelo = modelo;
+        this.motor = motor;
+    }
 
-public class LeituraDouble {
-    public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+    // Getters
+    public int getId() {
+        return this.id;
+    }
 
-        System.out.print("Digite um número real: ");
-        String texto = entrada.nextLine();     // lê como String
-        double x = Double.parseDouble(texto);  // converte para double
+    public String getModelo() {
+        return this.modelo;
+    }
 
-        System.out.printf("Você digitou: %.2f%n", x);
-
-        entrada.close();
+    public Motor getMotor() {
+        return this.motor;
     }
 }
-```
 
-## Exemplo Completo
-```bash
-public class FormatDemo {
+// Programa principal
+public class Main {
     public static void main(String[] args) {
-        int n = 255;
-        double pi = 3.14159;
-        String nome = "Leonam";
-        boolean ativo = true;
+        Motor motor1 = new Motor(101, "V8 Turbo");
+        Carro carro1 = new Carro(1, "Camaro", motor1);
 
-        System.out.printf("Decimal: %d%n", n);
-        System.out.printf("Octal: %o%n", n);
-        System.out.printf("Hex: %x%n", n);
-        System.out.printf("Hex (maiúsculo): %X%n", n);
-
-        System.out.printf("PI normal: %f%n", pi);
-        System.out.printf("PI com 2 casas: %.2f%n", pi);
-        System.out.printf("PI científica: %e%n", pi);
-
-        System.out.printf("Nome: %s%n", nome);
-        System.out.printf("Ativo: %b%n", ativo);
-
-        System.out.printf("Com largura 5: %5d%n", 42);
-        System.out.printf("Zeros à esquerda: %05d%n", 42);
-        System.out.printf("Alinhado à esquerda: %-5dFIM%n", 42);
+        System.out.println("Carro ID: " + carro1.getId());
+        System.out.println("Carro Modelo: " + carro1.getModelo());
+        System.out.println("Motor ID: " + carro1.getMotor().getId());
+        System.out.println("Motor Modelo: " + carro1.getMotor().getModelo());
     }
 }
 
 
 ```
+
+## Exemplo Composição Livro
+```bash
+// Classe Autor
+class Autor {
+    private int id;
+    private String nome;
+    private Livro livro;
+
+    public Autor(int id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
+    public void setLivro(Livro livro) {
+        this.livro = livro;
+    }
+
+    public Livro getLivro() {
+        return this.livro;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+}
+
+// Classe Livro
+class Livro {
+    private int id;
+    private String nome;
+    private Autor autor;
+
+    public Livro(int id, String nome, Autor autor) {
+        this.id = id;
+        this.nome = nome;
+        this.autor = autor;
+    }
+
+    public Autor getAutor() {
+        return this.autor;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+}
+
+// Programa principal
+public class Main {
+    public static void main(String[] args) {
+        Autor autor1 = new Autor(1, "José de Alencar");
+        Livro livro1 = new Livro(101, "Iracema", autor1);
+
+        // Associação explícita
+        autor1.setLivro(livro1);
+
+        System.out.println("Autor: " + autor1.getNome());
+        System.out.println("Livro: " + autor1.getLivro().getNome());
+    }
+}
+
+
+```
+
+<!--
+## Exemplo Celular
+
+```bash
+// Classe Bateria
+class Bateria {
+    // 🔹 Atributo
+    private int carga; // nível da bateria em %
+
+    // 🔹 Construtor
+    public Bateria(int cargaInicial) {
+        this.carga = Math.min(cargaInicial, 100); // garante máximo de 100%
+    }
+
+    // 🔹 Métodos
+    public void usar(int quantidade) {
+        this.carga = Math.max(0, this.carga - quantidade); // nunca abaixo de 0
+    }
+
+    public void recarregar(int quantidade) {
+        this.carga = Math.min(100, this.carga + quantidade); // nunca acima de 100
+    }
+
+    public int getCarga() {
+        return this.carga;
+    }
+
+    public boolean temCarga() {
+        return this.carga > 0;
+    }
+}
+
+// Classe Tela
+class Tela {
+    // 🔹 Atributo
+    private boolean ligada;
+
+    // 🔹 Construtor
+    public Tela() {
+        this.ligada = false; // começa desligada
+    }
+
+    // 🔹 Métodos
+    public void ligar() {
+        this.ligada = true;
+        System.out.println("📱 Tela ligada!");
+    }
+
+    public void desligar() {
+        this.ligada = false;
+        System.out.println("📴 Tela desligada!");
+    }
+
+    public boolean isLigada() {
+        return this.ligada;
+    }
+}
+
+// Classe Celular (composição: TEM uma Bateria e TEM uma Tela)
+class Celular {
+    // 🔹 Atributos
+    private Bateria bateria;
+    private Tela tela;
+    private boolean ligado;
+
+    // 🔹 Construtor
+    public Celular(int cargaInicial) {
+        this.bateria = new Bateria(cargaInicial);
+        this.tela = new Tela();
+        this.ligado = false;
+    }
+
+    // 🔹 Métodos
+    public void ligar() {
+        if (this.bateria.temCarga()) {
+            this.ligado = true;
+            this.tela.ligar();
+            System.out.println("✅ Celular ligado!");
+        } else {
+            System.out.println("❌ Não é possível ligar. Bateria descarregada!");
+        }
+    }
+
+    public void desligar() {
+        this.ligado = false;
+        this.tela.desligar();
+        System.out.println("📴 Celular desligado!");
+    }
+
+    public void usar() {
+        if (this.ligado && this.bateria.temCarga()) {
+            System.out.println("📲 Usando o celular...");
+            this.bateria.usar(20); // gasta 20% por uso
+            System.out.println("🔋 Carga atual: " + this.bateria.getCarga() + "%");
+
+            if (!this.bateria.temCarga()) {
+                System.out.println("⚠️ Bateria acabou! O celular desligou.");
+                this.desligar();
+            }
+        } else if (!this.ligado) {
+            System.out.println("❌ Ligue o celular antes de usar.");
+        } else {
+            System.out.println("❌ Bateria descarregada!");
+        }
+    }
+
+    public void recarregar(int qtd) {
+        this.bateria.recarregar(qtd);
+        System.out.println("🔌 Recarregando... Bateria agora em " + this.bateria.getCarga() + "%");
+    }
+}
+
+// Programa principal
+public class Main {
+    public static void main(String[] args) {
+        Celular celular = new Celular(40); // começa com 40%
+
+        celular.ligar();
+        celular.usar();
+        celular.usar();
+        celular.usar(); // aqui a bateria acaba
+        celular.ligar(); // não liga mais
+        celular.recarregar(50);
+        celular.ligar(); // agora liga de novo
+    }
+}
+
+
+```
+-->
+
