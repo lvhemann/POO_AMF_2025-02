@@ -130,7 +130,6 @@ public class Main {
 
 ```
 
-<!--
 ## Exemplo Celular
 
 ```bash
@@ -259,5 +258,4 @@ public class Main {
 
 
 ```
--->
 
