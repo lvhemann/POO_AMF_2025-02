@@ -15,4 +15,14 @@ uma quantia e obter o saldo. Para cada saque será debitada também uma taxa de 
 corrente de um cliente especial. Clientes especiais pagam taxas de operação de apenas 0,1% do valor
 sacado. Faça testes com as duas classes e verifique seus resultados.
 
+3) Implemente uma classe Ingresso com os atributos evento:String e valorBase:double, métodos de acesso, valorFinal() e exibeDados() (mostra evento, base e final).
+Crie duas subclasses:
+Vip com adicional:double → sobrescreva valorFinal() para valorBase + adicional e exibeDados().
+Estudante com desconto:double → sobrescreva valorFinal() para max(0, valorBase − desconto) e exibeDados().
 
+4) Implemente a classe Produto com nome:String e precoBase:double, métodos de acesso, precoFinal() e exibeDados() (mostra nome, base e final).
+Crie duas subclasses:
+
+ProdutoNacional com impostoPercent:double → sobrescreva precoFinal() para precoBase * (1 + impostoPercent/100) e exibeDados().
+
+ProdutoImportado com impostoPercent:double e taxaDesembaraco:double → precoFinal() = precoBase * (1 + impostoPercent/100) + taxaDesembaraco; sobrescreva exibeDados().
