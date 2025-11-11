@@ -77,7 +77,7 @@ public class Main {
 
 
 
-        // Cada animal faz seu som e dorme
+        // Cada animal faz seu som
         cachorro.emitirSom();
         gato.emitirSom();
         vaca.emitirSom();
