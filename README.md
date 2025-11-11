@@ -36,3 +36,57 @@ public class Main {
 }
 ```
 
+## Aula sobre classes abstratas
+
+```bash
+abstract class Animal {
+    String nome;
+    void dormir() {
+        System.out.println(nome + " está dormindo...");
+    }
+    abstract void emitirSom(); // deve ser implementado
+}
+
+lass Cachorro extends Animal {
+    @Override
+    void emitirSom() {
+        System.out.println("Au");}}
+
+class Gato extends Animal {
+    @Override
+    void emitirSom() {
+        System.out.println("Miau!");}}
+
+class Vaca extends Animal {
+    @Override
+    void emitirSom() {
+        System.out.println("Muuuu!"); }}
+
+public class Main {
+    public static void main(String[] args) {
+
+        // Criando cada objeto com new e definindo o nome
+        Cachorro cachorro = new Cachorro();
+        cachorro.nome = "Rex";
+
+        Gato gato = new Gato();
+        gato.nome = "Mimi";
+
+        Vaca vaca = new Vaca();
+        vaca.nome = "Mimosa";
+
+
+
+        // Cada animal faz seu som e dorme
+        cachorro.emitirSom();
+        gato.emitirSom();
+        vaca.emitirSom();
+        galinha.emitirSom();
+        leao.emitirSom();
+        cobra.emitirSom();
+}
+
+```
+
+
+
