@@ -300,3 +300,31 @@ public class Main {
     }
 }
 ```
+
+
+## Exercícios
+1. SRP — Single Responsibility Principle
+Crie uma classe User que viole o princípio SRP, contendo múltiplas responsabilidades (ex.: cadastro (nome, email e senha), login, validação etc.).
+Estruture o código separando as responsabilidades em classes diferentes, de forma que cada classe tenha apenas um motivo para mudar.
+
+
+2. Implemente uma classe PaymentProcessor que siga o princípio OCP.
+Ela deve aceitar diferentes tipos de pagamento (ex.: Cartão, Pix, Boleto, Carteira Digital), sem exigir alterações na classe principal quando um novo método de pagamento for criado.
+Use interfaces ou classes abstratas para permitir que novas formas de pagamento sejam adicionadas apenas criando novas classes.
+
+3. Crie uma hierarquia de classes de veículos, onde Veiculo seja a classe base.
+As classes derivadas (como Carro, Moto, Caminhao) devem obedecer ao princípio LSP: qualquer tipo de veículo deve poder substituir um Veiculo sem alterar o comportamento esperado no código cliente.
+
+
+4. Desenvolva uma interface inicial para um sistema de controle de acesso (por exemplo, contendo métodos como login, logout, consultarRegistros, gerarRelatorios, etc.).
+Em seguida, divida essa interface grande em interfaces menores, mais específicas, garantindo que as classes concretas implementem apenas métodos que realmente utilizam.
+
+
+5. Crie uma classe Car que inicialmente depende diretamente de um tipo específico de Engine (por exemplo, CombustionEngine).Mostre como isso viola o DIP.
+Depois, reestruture o código para que Car dependa de uma abstração (Engine), permitindo que diferentes tipos de motores (combustão, elétrico, híbrido etc.) possam ser utilizados sem modificar a classe Car.
+
+
+
+
+
+
