@@ -43,3 +43,260 @@ public class Main {
     }
 }
 ```
+
+## OCP - Aberto/Fechado
+```bash
+public interface Desconto {
+    double aplicar(double valor);
+}
+```
+
+```bash
+public class DescontoPromocional implements Desconto {
+
+    @Override
+    public double aplicar(double valor) {
+        return valor * 0.90; // 10% de desconto
+    }
+}
+
+public class DescontoFidelidade implements Desconto {
+
+    @Override
+    public double aplicar(double valor) {
+        return valor * 0.85; // 15% de desconto
+    }
+}
+
+public class DescontoSazonal implements Desconto {
+
+    @Override
+    public double aplicar(double valor) {
+        return valor * 0.80; // 20% de desconto
+    }
+}
+
+public class CalculadoraDesconto {
+
+    public double calcular(double valor, Desconto desconto) {
+        return desconto.aplicar(valor);
+    }
+}
+```
+
+```bash
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        CalculadoraDesconto calc = new CalculadoraDesconto();
+
+        double valorBase = 100.0;
+
+        System.out.println("Valor base: R$ " + valorBase);
+
+        double valorPromo = calc.calcular(valorBase, new DescontoPromocional());
+        System.out.println("Desconto Promocional (10%): R$ " + valorPromo);
+
+        double valorFidelidade = calc.calcular(valorBase, new DescontoFidelidade());
+        System.out.println("Desconto Fidelidade (15%): R$ " + valorFidelidade);
+
+        double valorSazonal = calc.calcular(valorBase, new DescontoSazonal());
+        System.out.println("Desconto Sazonal (20%): R$ " + valorSazonal);
+    }
+}
+```
+
+## Substituição
+
+```bash
+public interface VeiculoMovel {
+    void acelerar();
+}
+```
+
+```bash
+public class Carro implements VeiculoMovel {
+
+    @Override
+    public void acelerar() {
+        System.out.println("O carro está acelerando com motor a combustão...");
+    }
+}
+
+public class Bicicleta implements VeiculoMovel {
+
+    @Override
+    public void acelerar() {
+        System.out.println("A bicicleta está ganhando velocidade com pedalada...");
+    }
+}
+
+public class CarroEletrico implements VeiculoMovel {
+
+    @Override
+    public void acelerar() {
+        System.out.println("O carro elétrico está acelerando silenciosamente...");
+    }
+}
+```
+
+```bash
+public class Main {
+
+    public static void main(String[] args) {
+
+        VeiculoMovel carro = new Carro();
+        VeiculoMovel bicicleta = new Bicicleta();
+        VeiculoMovel carroEletrico = new CarroEletrico();
+
+        testarAceleracao(carro);
+        testarAceleracao(bicicleta);
+        testarAceleracao(carroEletrico);
+    }
+
+    public static void testarAceleracao(VeiculoMovel veiculo) {
+        veiculo.acelerar();
+    }
+}
+
+```
+
+
+## Princípio da Segregação de Interfaces 
+
+```bash
+public interface Impressora {
+    void imprimir(String documento);
+}
+
+public interface Scanner {
+    void escanear(String documento);
+}
+```
+
+```bash
+public class ImpressoraSimples implements Impressora {
+
+    @Override
+    public void imprimir(String documento) {
+        System.out.println("Imprimindo documento: " + documento);
+    }
+}
+
+public class ScannerSimples implements Scanner {
+
+    @Override
+    public void escanear(String documento) {
+        System.out.println("Escaneando documento: " + documento);
+    }
+}
+
+```
+
+```bash
+public class DispositivoMultifuncional implements Impressora, Scanner {
+
+    @Override
+    public void imprimir(String documento) {
+        System.out.println("[Multifuncional] Imprimindo: " + documento);
+    }
+
+    @Override
+    public void escanear(String documento) {
+        System.out.println("[Multifuncional] Escaneando: " + documento);
+    }
+}
+```
+
+```bash
+package dispositivos;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Impressora impSimples = new ImpressoraSimples();
+        Scanner scannerSimples = new ScannerSimples();
+        DispositivoMultifuncional multi = new DispositivoMultifuncional();
+
+        System.out.println("=== Dispositivos Simples ===");
+        impSimples.imprimir("Contrato de Locação");
+        scannerSimples.escanear("Documento de Identidade");
+
+        System.out.println("\n=== Dispositivo Multifuncional ===");
+        multi.imprimir("Relatório de Vendas");
+        multi.escanear("Comprovante de Pagamento");
+    }
+}
+
+
+```
+
+
+
+## Princípio da Inversão de Dependência - DIP 
+
+
+```bash
+public interface ProcessadorPagamento {
+    void processar();
+}
+
+```
+
+```bash
+public class ProcessadorDePagamentoComCartao implements ProcessadorPagamento {
+
+    @Override
+    public void processar() {
+        System.out.println("Processando pagamento com CARTÃO de crédito...");
+    }
+}
+
+public class ProcessadorDePagamentoComPix implements ProcessadorPagamento {
+
+    @Override
+    public void processar() {
+        System.out.println("Processando pagamento via PIX...");
+    }
+}
+
+```
+
+```bash
+public class Pedido {
+
+    private ProcessadorPagamento processador;
+
+    public Pedido(ProcessadorPagamento processador) {
+        this.processador = processador;
+    }
+
+    public void finalizar() {
+        System.out.println("Finalizando pedido...");
+        processador.processar();
+        System.out.println("Pedido finalizado com sucesso!\n");
+    }
+}
+
+```
+
+```bash
+public class Main {
+
+    public static void main(String[] args) {
+
+        // Pedido pago com CARTÃO
+        ProcessadorPagamento procCartao = new ProcessadorDePagamentoComCartao();
+        Pedido pedidoCartao = new Pedido(procCartao);
+        pedidoCartao.finalizar();
+
+        // Pedido pago com PIX
+        ProcessadorPagamento procPix = new ProcessadorDePagamentoComPix();
+        Pedido pedidoPix = new Pedido(procPix);
+        pedidoPix.finalizar();
+    }
+}
+```
