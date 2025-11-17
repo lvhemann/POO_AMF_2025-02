@@ -1,70 +1,45 @@
-# POO_AMF_2025-02
 
-## Conversão de um String para Inteiro
+##  SRP – Responsabilidade única
 
 ```bash
-import java.util.Scanner;
-
-public class LeituraInteiro {  // CUIDADO COM O NOME DO SEU PROJETO 
-    public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
-
-        System.out.print("Digite um número inteiro: ");
-        String texto = entrada.nextLine(); // lê como String
-        int x = Integer.parseInt(texto);   // converte para int
-
-        System.out.println("Você digitou o número: " + x);
-        entrada.close();
+class ProcessadorPagamento {
+    public void processar(double valor) {
+        System.out.println("Processando pagamento de R$ " + valor);
     }
 }
-
-```
-
-## Conversão de String para número real (double)
-```bash
-import java.util.Scanner;
-
-public class LeituraDouble {
-    public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
-
-        System.out.print("Digite um número real: ");
-        String texto = entrada.nextLine();     // lê como String
-        double x = Double.parseDouble(texto);  // converte para double
-
-        System.out.printf("Você digitou: %.2f%n", x);
-
-        entrada.close();
+class GeradorRecibo {
+    public void gerar(double valor) {
+        System.out.println("Recibo: pagamento de R$ " + valor);
+    }
+}
+class EmailService {
+    public void enviar(String email) {
+        System.out.println("Enviando recibo para " + email);
     }
 }
 ```
 
-## Exemplo Completo
+
 ```bash
-public class FormatDemo {
-    public static void main(String[] args) {
-        int n = 255;
-        double pi = 3.14159;
-        String nome = "Leonam";
-        boolean ativo = true;
+class PagamentoController {
+    private ProcessadorPagamento processador = new ProcessadorPagamento();
+    private GeradorRecibo recibo = new GeradorRecibo();
+    private EmailService email = new EmailService();
 
-        System.out.printf("Decimal: %d%n", n);
-        System.out.printf("Octal: %o%n", n);
-        System.out.printf("Hex: %x%n", n);
-        System.out.printf("Hex (maiúsculo): %X%n", n);
-
-        System.out.printf("PI normal: %f%n", pi);
-        System.out.printf("PI com 2 casas: %.2f%n", pi);
-        System.out.printf("PI científica: %e%n", pi);
-
-        System.out.printf("Nome: %s%n", nome);
-        System.out.printf("Ativo: %b%n", ativo);
-
-        System.out.printf("Com largura 5: %5d%n", 42);
-        System.out.printf("Zeros à esquerda: %05d%n", 42);
-        System.out.printf("Alinhado à esquerda: %-5dFIM%n", 42);
+    public void pagar(double valor, String emailCliente) {
+        processador.processar(valor);
+        recibo.gerar(valor);
+        email.enviar(emailCliente);
     }
 }
+```
 
+```bash
+public class Main {
+    public static void main(String[] args) {
+        PagamentoController controller = new PagamentoController();
 
+        controller.pagar(250.00, "cliente@email.com");
+    }
+}
 ```
