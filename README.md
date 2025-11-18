@@ -324,6 +324,111 @@ Use interfaces ou classes abstratas para permitir que novas formas de pagamento 
 Depois, reestruture o código para que Car dependa de uma abstração (Engine), permitindo que diferentes tipos de motores (combustão, elétrico, híbrido etc.) possam ser utilizados sem modificar a classe Car.
 
 
+## Exerc. 1 Correção
+
+# Main
+```bash
+package Main;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		 // Cadastro
+        User user = new User("Maria", "maria@example.com", "segredo123");
+        
+        String emailDigitado = "maria@example.com";
+
+        Auth validator = new Auth();
+        
+        if (validator.emailConfere(user, emailDigitado)) {
+            System.out.println("E-mail confere com o que foi inscrito!");
+        } else {
+            System.out.println("E-mail NÃO confere!");
+        }
+        
+        String senhaDigitada = "Segredo123";
+
+        Auth validator1 = new Auth();
+        
+        if (validator1.senhaConfere(user, senhaDigitada)) {
+            System.out.println("Senha confere com o que foi inscrito!");
+        } else {
+            System.out.println("Senha NÃO confere!");
+        }
+        
+        if (validator1.logar(user, senhaDigitada, emailDigitado)) {
+            System.out.println("Logado");
+        } else {
+            System.out.println("NÃO logado!");
+        }
+
+	}
+
+}
+```
+# User
+```bash
+package Main;
+
+class User {
+    private String nome;
+    private String email;
+    private String senha;
+
+    public User(String nome, String email, String senha) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+    }
+
+    public String getNome() {
+    	return nome;
+    	}
+    
+    public String getEmail() {
+    	return email; 
+    	}
+    
+    public String getSenha() {
+    	return senha; 
+    	}
+}
+
+
+
+
+```
+
+# Auth
+
+```bash
+package Main;
+
+public class Auth {
+
+	public boolean emailConfere(User user, String emailDigitado) {
+        return user.getEmail().equals(emailDigitado);
+    }
+
+    public boolean senhaConfere(User user, String senhaDigitada) {
+        return user.getSenha().equals(senhaDigitada);
+    }
+    
+    public boolean logar(User user, String senhaDigitada, String emailDigitado) {
+        if ((user.getSenha().equals(senhaDigitada)) && user.getEmail().equals(emailDigitado)) {
+        		return true;
+        } else {
+        		return false;
+        }
+    }
+    
+}
+
+
+
+
+```
 
 
 
